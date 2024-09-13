@@ -1,0 +1,39 @@
+@model app_mascota.ViewModel.MascotaViewModel
+
+@{
+    ViewData["Title"] = "Editar Mascota";
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">Editar Mascota</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="FormularioMascota.Id" />
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.Nombre" class="control-label"></label>
+                    <input asp-for="FormularioMascota.Nombre" class="form-control" />
+                    <span asp-validation-for="FormularioMascota.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.Raza" class="control-label"></label>
+                    <input asp-for="FormularioMascota.Raza" class="form-control" />
+                    <span asp-validation-for="FormularioMascota.Raza" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.Color" class="control-label"></label>
+                    <input asp-for="FormularioMascota.Color" class="form-control" />
+                    <span asp-validation-for="FormularioMascota.Color" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.FechaNacimiento" class="control-label"></label>
+                    <input asp-for="FormularioMascota.FechaNacimiento" class="form-control" type="date" min="1900-01-01" max="2024-12-31" />
+                    <span asp-validation-for="FormularioMascota.FechaNacimiento" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

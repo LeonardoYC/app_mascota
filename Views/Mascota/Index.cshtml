@@ -1,0 +1,69 @@
+@model app_mascota.ViewModel.MascotaViewModel
+
+@{
+    ViewData["Title"] = "Registrar tu Mascota";
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">Formulario de Registro de Mascotas</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="Mascota" asp-action="Enviar" method="post">
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.Nombre" class="control-label"></label>
+                    <input asp-for="FormularioMascota.Nombre" class="form-control" />
+                    <span asp-validation-for="FormularioMascota.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.Raza" class="control-label"></label>
+                    <input asp-for="FormularioMascota.Raza" class="form-control" />
+                    <span asp-validation-for="FormularioMascota.Raza" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.Color" class="control-label"></label>
+                    <input asp-for="FormularioMascota.Color" class="form-control" />
+                    <span asp-validation-for="FormularioMascota.Color" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormularioMascota.FechaNacimiento" class="control-label"></label>
+                    <input asp-for="FormularioMascota.FechaNacimiento" class="form-control" type="date" min="1900-01-01" max="2024-12-31" />
+                    <span asp-validation-for="FormularioMascota.FechaNacimiento" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Registrar Mascota</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Raza</th>
+                        <th>Color</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListaMascota != null && Model.ListaMascota.Any())
+                    {
+                        foreach (var mascota in Model.ListaMascota)
+                        {
+                            <tr>
+                                <td>@mascota.Nombre</td>
+                                <td>@mascota.Raza</td>
+                                <td>@mascota.Color</td>
+                                <td>@mascota.FechaNacimiento.ToShortDateString()</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@mascota.Id" class="btn btn-warning btn-sm">Editar</a>
+                                    <a asp-action="Delete" asp-route-id="@mascota.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

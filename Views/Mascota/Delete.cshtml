@@ -1,0 +1,28 @@
+@model app_mascota.Models.Mascota
+
+@{
+    ViewData["Title"] = "Eliminar Mascota";
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">Eliminar Mascota</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-danger">
+                <h4 class="alert-heading">¿Está seguro?</h4>
+                <p>Está a punto de eliminar la mascota:</p>
+                <ul>
+                    <li><strong>Nombre:</strong> @Model.Nombre</li>
+                    <li><strong>Raza:</strong> @Model.Raza</li>
+                    <li><strong>Color:</strong> @Model.Color</li>
+                    <li><strong>Fecha de Nacimiento:</strong> @Model.FechaNacimiento.ToShortDateString()</li>
+                </ul>
+                <form asp-controller="Mascota" asp-action="DeleteConfirmed" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
